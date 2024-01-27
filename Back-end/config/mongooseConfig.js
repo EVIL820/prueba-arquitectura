@@ -1,21 +1,16 @@
 // mongooseConfig.js
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 
-dotenv.config({ path: '.config.env' });
+// Definir directamente la cadena de conexión
+const DB = 'mongodb+srv://bcordero869:ComunicacionEmocional@cluster0.igrndt0.mongodb.net/ComunicacionEmocional?retryWrites=true&w=majority';
 
-const DB = process.env.DATABASE;
-
-console.log('Database URL:', DB); // Agregar esta línea para verificar la URL
+console.log('Database URL:', DB);
 
 mongoose.set('strictQuery', false);
 
 const connect = async () => {
   try {
-    await mongoose.connect(DB, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(DB);
     console.log('Connected to the database');
   } catch (error) {
     console.log(error);
